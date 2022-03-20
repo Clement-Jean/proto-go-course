@@ -86,12 +86,12 @@ func doFile(p proto.Message) {
 }
 
 func main() {
-	//doSimple()
+	doSimple()
 	//doComplex()
 	//doEnum()
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
-	doMap()
+	//doMap()
 	//doJson(doSimple())
 	//doFile(doSimple())
 }
