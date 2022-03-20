@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package example.simple;
+
+option go_package = "github.com/Clement-Jean/proto-go-course/proto";
+
+message Simple {
+  uint32 id = 1;
+  bool is_simple = 2;
+  string name = 3;
+  repeated int32 sample_lists = 4;
+}
