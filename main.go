@@ -9,28 +9,22 @@ import (
 )
 
 func doSimple() *pb.Simple {
-	message := &pb.Simple{
+	return &pb.Simple{
 		Id:          42,
 		Name:        "My name",
 		IsSimple:    true,
 		SampleLists: []int32{1, 2, 3, 4, 5, 6},
 	}
-
-	fmt.Println(message)
-	return message
 }
 
 func doComplex() *pb.Complex {
-	message := &pb.Complex{
+	return &pb.Complex{
 		OneDummy: &pb.Dummy{Id: 42, Name: "My name"},
 		MultipleDummies: []*pb.Dummy{
 			{Id: 43, Name: "My name 2"},
 			{Id: 44, Name: "My name 3"},
 		},
 	}
-
-	fmt.Println(message)
-	return message
 }
 
 func doOneOf(message interface{}) {
@@ -58,13 +52,10 @@ func doMap() *pb.MapExample {
 }
 
 func doEnum() *pb.Enumeration {
-	message := &pb.Enumeration{
+	return &pb.Enumeration{
 		EyeColor: pb.EyeColor_EYE_COLOR_GREEN,
 		//EyeColor: 1,
 	}
-
-	fmt.Println(message)
-	return message
 }
 
 func doJson(p protoiface.MessageV1) {
@@ -86,12 +77,12 @@ func doFile(p proto.Message) {
 }
 
 func main() {
-	doSimple()
-	//doComplex()
-	//doEnum()
+	fmt.Println(doSimple())
+	// fmt.Println(doComplex())
+	// fmt.Println(doEnum())
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
-	//doMap()
-	//doJson(doSimple())
-	//doFile(doSimple())
+	// doMap()
+	// doJson(doSimple())
+	// doFile(doSimple())
 }
