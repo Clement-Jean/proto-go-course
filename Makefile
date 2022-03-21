@@ -1,11 +1,13 @@
 PACKAGE = $(shell head -1 go.mod | awk '{print $$2}')
+BIN = proto-go-course
+PROTO_DIR = proto
 
 build: 	generate
-	go build .
+	go build -o ${BIN} .
 
 generate:
-	protoc -Iproto --go_opt=module=${PACKAGE} --go_out=. proto/*.proto
+	protoc -I${PROTO_DIR} --go_opt=module=${PACKAGE} --go_out=. ${PROTO_DIR}/*.proto
 
 clean:
-	rm proto/*.pb.go
-	rm proto-go-course
+	rm ${PROTO_DIR}/*.pb.go
+	rm ${BIN}
