@@ -5,7 +5,6 @@ import (
 
 	pb "github.com/Clement-Jean/proto-go-course/proto"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/runtime/protoiface"
 )
 
 func doSimple() *pb.Simple {
@@ -56,15 +55,6 @@ func doEnum() *pb.Enumeration {
 	}
 }
 
-func doJson(p protoiface.MessageV1) {
-	jsonString := toJSON(p)
-	fmt.Println(jsonString)
-
-	message := &pb.Simple{}
-	fromJSON(jsonString, message)
-	fmt.Println(message)
-}
-
 func doFile(p proto.Message) {
 	path := "simple.bin"
 
@@ -74,13 +64,22 @@ func doFile(p proto.Message) {
 	fmt.Println("Read the content:", sm2)
 }
 
+func doJson(p proto.Message) {
+	jsonString := toJSON(p)
+	fmt.Println(jsonString)
+
+	message := &pb.Simple{}
+	fromJSON(jsonString, message)
+	fmt.Println(message)
+}
+
 func main() {
-	//fmt.Println(doSimple())
+	// fmt.Println(doSimple())
 	// fmt.Println(doComplex())
 	// fmt.Println(doEnum())
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
 	// fmt.Println(doMap())
-	// doJson(doSimple())
 	// doFile(doSimple())
+	doJson(doSimple())
 }

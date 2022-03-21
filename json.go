@@ -3,24 +3,31 @@ package main
 import (
 	"log"
 
-	"github.com/golang/protobuf/jsonpb"
-	"google.golang.org/protobuf/runtime/protoiface"
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 )
 
-func toJSON(pb protoiface.MessageV1) string {
-	marshaler := jsonpb.Marshaler{}
-	out, err := marshaler.MarshalToString(pb)
+func toJSON(pb proto.Message) string {
+	option := &protojson.MarshalOptions{
+		Multiline: true,
+	}
+
+	out, err := option.Marshal(pb)
 
 	if err != nil {
 		log.Fatalln("Can't convert to JSON", err)
 		return ""
 	}
 
-	return out
+	return string(out)
 }
 
-func fromJSON(in string, pb protoiface.MessageV1) {
-	if err := jsonpb.UnmarshalString(in, pb); err != nil {
+func fromJSON(in string, pb proto.Message) {
+	option := protojson.UnmarshalOptions{
+		DiscardUnknown: true,
+	}
+
+	if err := option.Unmarshal([]byte(in), pb); err != nil {
 		log.Fatalln("Couldn't unmarshal the JSON into the pb struct", err)
 	}
 }
