@@ -30,11 +30,11 @@ func doComplex() *pb.Complex {
 func doOneOf(message interface{}) {
 	switch x := message.(type) {
 	case *pb.Result_Id:
-		fmt.Println(message.(*pb.Result_Id))
+		fmt.Printf("This is an Id: %d\n", message.(*pb.Result_Id).Id)
 	case *pb.Result_Message:
-		fmt.Println(message.(*pb.Result_Message))
+		fmt.Printf("This is a message: %s\n", message.(*pb.Result_Message).Message)
 	default:
-		fmt.Errorf("message has unexpected type %v", x)
+		fmt.Printf("message has unexpected type: %T\n", x)
 	}
 }
 
