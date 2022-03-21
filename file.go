@@ -27,12 +27,12 @@ func writeToFile(fname string, pb proto.Message) error {
 func readFromFile(fname string, pb proto.Message) error {
 	in, err := ioutil.ReadFile(fname)
 	if err != nil {
-		log.Fatalln("Something went wrong when reading the file", err)
+		log.Fatalln("Can't read from file", err)
 		return err
 	}
 
 	if err = proto.Unmarshal(in, pb); err != nil {
-		log.Fatalln("Couldn't put the bytes into the protocol buffers struct", err)
+		log.Fatalln("Can't deserialise from file", err)
 		return err
 	}
 

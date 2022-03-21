@@ -46,8 +46,6 @@ func doMap() *pb.MapExample {
 			"myid3": {Id: 44},
 		},
 	}
-
-	fmt.Println(message)
 	return message
 }
 
@@ -62,9 +60,9 @@ func doJson(p protoiface.MessageV1) {
 	jsonString := toJSON(p)
 	fmt.Println(jsonString)
 
-	sm2 := &pb.Simple{}
-	fromJSON(jsonString, sm2)
-	fmt.Println(sm2)
+	message := &pb.Simple{}
+	fromJSON(jsonString, message)
+	fmt.Println(message)
 }
 
 func doFile(p proto.Message) {
@@ -77,12 +75,12 @@ func doFile(p proto.Message) {
 }
 
 func main() {
-	fmt.Println(doSimple())
+	//fmt.Println(doSimple())
 	// fmt.Println(doComplex())
 	// fmt.Println(doEnum())
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
-	// doMap()
+	// fmt.Println(doMap())
 	// doJson(doSimple())
 	// doFile(doSimple())
 }
