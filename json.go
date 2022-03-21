@@ -28,6 +28,6 @@ func fromJSON(in string, pb proto.Message) {
 	}
 
 	if err := option.Unmarshal([]byte(in), pb); err != nil {
-		log.Fatalln("Couldn't unmarshal the JSON into the pb struct", err)
+		log.Fatalln("Couldn't unmarshal from JSON", err)
 	}
 }
