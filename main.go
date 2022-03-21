@@ -64,22 +64,25 @@ func doFile(p proto.Message) {
 	fmt.Println("Read the content:", sm2)
 }
 
-func doJson(p proto.Message) {
+func doToJSON(p proto.Message) string {
 	jsonString := toJSON(p)
 	fmt.Println(jsonString)
-
-	message := &pb.Simple{}
-	fromJSON(jsonString, message)
-	fmt.Println(message)
+	return jsonString
 }
 
+func doFromJSON(jsonString string) proto.Message {
+	message := &pb.Simple{}
+	fromJSON(jsonString, message)
+	return message
+}
 func main() {
-	// fmt.Println(doSimple())
+	fmt.Println(doSimple())
 	// fmt.Println(doComplex())
 	// fmt.Println(doEnum())
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
 	// fmt.Println(doMap())
 	// doFile(doSimple())
-	doJson(doSimple())
+	// fmt.Println(doFromJSON(doToJSON(doSimple())))
+	// fmt.Println(doFromJSON(`{"id": 42, "unknown": "test"}`))
 }
