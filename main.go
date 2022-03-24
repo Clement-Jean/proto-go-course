@@ -78,8 +78,8 @@ func doFromJSON(jsonString string, t reflect.Type) proto.Message {
 }
 
 func main() {
-	fmt.Println(doSimple())
-	// fmt.Println(doComplex())
+	// fmt.Println(doSimple())
+	fmt.Println(doComplex())
 	// fmt.Println(doEnum())
 	// doOneOf(&pb.Result_Id{Id: 42})
 	// doOneOf(&pb.Result_Message{Message: "My name"})
