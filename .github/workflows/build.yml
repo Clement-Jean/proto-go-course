@@ -23,6 +23,11 @@ jobs:
       - name: Install make
         run: choco install make
 
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+
       - name: Install proto-gen-go
         run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
       
@@ -40,6 +45,11 @@ jobs:
         with:
           go-version: '^1.17'
           fetch-depth: 1
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
 
       - name: Install proto-gen-go
         run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
