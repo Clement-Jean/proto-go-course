@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 
 	pb "github.com/Clement-Jean/proto-go-course/proto"
 	"google.golang.org/protobuf/proto"
@@ -70,11 +71,12 @@ func doToJSON(p proto.Message) string {
 	return jsonString
 }
 
-func doFromJSON(jsonString string) proto.Message {
-	message := &pb.Simple{}
+func doFromJSON(jsonString string, t reflect.Type) proto.Message {
+	message := reflect.New(t).Interface().(proto.Message)
 	fromJSON(jsonString, message)
 	return message
 }
+
 func main() {
 	fmt.Println(doSimple())
 	// fmt.Println(doComplex())
@@ -83,6 +85,7 @@ func main() {
 	// doOneOf(&pb.Result_Message{Message: "My name"})
 	// fmt.Println(doMap())
 	// doFile(doSimple())
-	// fmt.Println(doFromJSON(doToJSON(doSimple())))
-	// fmt.Println(doFromJSON(`{"id": 42, "unknown": "test"}`))
+	// fmt.Println(doFromJSON(doToJSON(doSimple()), reflect.TypeOf(pb.Simple{})))
+	// fmt.Println(doFromJSON(doToJSON(doComplex()), reflect.TypeOf(pb.Complex{})))
+	// fmt.Println(doFromJSON(`{"id": 42, "unknown": "test"}`, reflect.TypeOf(pb.Simple{})))
 }
