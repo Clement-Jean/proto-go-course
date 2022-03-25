@@ -65,12 +65,6 @@ func doFile(p proto.Message) {
 	fmt.Println("Read the content:", sm2)
 }
 
-func doToJSON(p proto.Message) string {
-	jsonString := toJSON(p)
-	fmt.Println(jsonString)
-	return jsonString
-}
-
 func doFromJSON(jsonString string, t reflect.Type) proto.Message {
 	message := reflect.New(t).Interface().(proto.Message)
 	fromJSON(jsonString, message)
@@ -85,7 +79,7 @@ func main() {
 	// doOneOf(&pb.Result_Message{Message: "My name"})
 	// fmt.Println(doMap())
 	// doFile(doSimple())
-	// fmt.Println(doFromJSON(doToJSON(doSimple()), reflect.TypeOf(pb.Simple{})))
-	// fmt.Println(doFromJSON(doToJSON(doComplex()), reflect.TypeOf(pb.Complex{})))
+	// fmt.Println(doFromJSON(toJSON(doSimple()), reflect.TypeOf(pb.Simple{})))
+	// fmt.Println(doFromJSON(toJSON(doComplex()), reflect.TypeOf(pb.Complex{})))
 	// fmt.Println(doFromJSON(`{"id": 42, "unknown": "test"}`, reflect.TypeOf(pb.Simple{})))
 }
