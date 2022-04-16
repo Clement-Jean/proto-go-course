@@ -5,6 +5,7 @@
 ## Build
 
 ```
+go mod tidy
 make
 ```
 
