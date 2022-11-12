@@ -13,7 +13,7 @@ else
 	else ifeq ($(UNAME),Linux)
 		OS = linux
 	else
-    	$(error OS not supported by this Makefile)
+	$(error OS not supported by this Makefile)
 	endif
 	PACKAGE = $(shell head -1 go.mod | awk '{print $$2}')
 	BIN = proto-go-course
